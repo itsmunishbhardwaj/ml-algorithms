@@ -1,0 +1,5 @@
+# Python
+*.ipynb
+
+# VS Code files
+.history

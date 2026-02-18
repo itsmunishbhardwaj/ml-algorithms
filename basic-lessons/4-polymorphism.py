@@ -1,0 +1,40 @@
+#define class
+class SimpleLinearModel:
+    # define constructor
+    def __init__(self, initial_weight, initial_bias):
+        self._weight = initial_weight
+        self._bias = initial_bias
+
+    def update_weights(self, new_weights, new_bias):
+        if new_weights == 0 or new_bias == 0:
+            return(f"Warning: Zero weight update detected!")
+        self._weight = new_weights
+        self._bias = new_bias
+        return(self._weight, self._bias)
+    
+    # define a method to predict y
+    def predict(self, x):
+        y = (self._weight * x ) + self._bias
+        return(y)
+
+class LogisticRegressionModel(SimpleLinearModel):
+    def __init__(self,weight, bias):
+        super().__init__(weight, bias)
+
+    def predict(self, x):
+        return(f"Add sigmod calculations later")
+
+my_model = SimpleLinearModel(0.5, 0.1)
+
+#print(f"{my_model.weight=}")
+print(f"{my_model.predict(10)=}")
+
+# update weights
+new_weights = my_model.update_weights(0, 0.5)
+print(f"{new_weights}")
+
+# create a list of models
+models = [SimpleLinearModel(0.5, 0.1), LogisticRegressionModel(0.8, 0.2)]
+
+for model in models:
+    print(f"{model.__class__.__name__} prediction: {model.predict(10)}")
